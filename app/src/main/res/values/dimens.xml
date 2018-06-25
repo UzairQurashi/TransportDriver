@@ -100,7 +100,6 @@
     <dimen name="v_large_text_size">35sp</dimen>
 
 
-
     <!--<diconsigneeNamename="extra_large_text_size">22sp</dimen>-->
 
     <dimen name="stroke">2dp</dimen>
@@ -149,5 +148,8 @@
     <dimen name="signature_paint_width">2dp</dimen>
     <dimen name="save_btn_height">45dp</dimen>
     <dimen name="list_defualt_height">250dp</dimen>
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
 
 </resources>

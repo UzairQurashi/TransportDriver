@@ -18,6 +18,8 @@ import com.google.android.gms.location.LocationCallback;
 import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.location.LocationResult;
 import com.google.android.gms.location.LocationServices;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 /**
  * Created by Uzair Qureshi on 5/28/2018.
@@ -37,6 +39,7 @@ public class LocationProvider extends IntentService{
     public void onCreate() {
         super.onCreate();
         buildFusedApiClient(getApplicationContext());
+
     }
 
     /**
@@ -103,13 +106,19 @@ public class LocationProvider extends IntentService{
                 Log.e("coordinates",""+lastLocation.getLatitude()+lastLocation.getLongitude());
 
                // setValue(lastLocation);
+                sendLocationUpdates(lastLocation);
             }
 
         }
     };
 
+    private void sendLocationUpdates(Location lastLocation) {
 
-
+        FirebaseDatabase rootDb=FirebaseDatabase.getInstance();
+        DatabaseReference dbRef=rootDb.getReference("Location");
+        dbRef.child("lat").setValue(lastLocation.getLatitude());
+        dbRef.child("lng").setValue(lastLocation.getLongitude());
+    }
 
 
     @Override
