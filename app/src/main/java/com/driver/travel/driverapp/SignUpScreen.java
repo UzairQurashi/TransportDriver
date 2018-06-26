@@ -17,7 +17,7 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
-public class SignUpScreen extends AppCompatActivity implements View.OnClickListener {
+public class SignUpScreen extends BaseActivity implements View.OnClickListener {
     private static final String TAG = "SignUpScreen";
     FirebaseAuth mAuth;
     ActivitySignUpScreenBinding binding;

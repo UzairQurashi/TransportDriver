@@ -11,14 +11,13 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.driver.travel.driverapp.databinding.ActivityLoginScreenBinding;
-import com.driver.travel.driverapp.delay.job.LocationSyncJob;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
-public class LoginScreen extends AppCompatActivity implements View.OnClickListener {
+public class LoginScreen extends BaseActivity implements View.OnClickListener {
     private static final String TAG = "LoginScreen";
     ActivityLoginScreenBinding binding;
     FirebaseAuth mAuth;
@@ -43,11 +42,11 @@ public class LoginScreen extends AppCompatActivity implements View.OnClickListen
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.btn_login:
-                //  LocationSyncJob.scheduleJob();
+                //  LocationSyncJob.schedulePeriodicJob();
                 driversignIn(binding.inputEmail.getText().toString(),binding.inputPassword.getText().toString());
                 break;
             case R.id.link_signup:
-                openSignUpActivity();
+                openActivityWithFinish(SignUpScreen.class);
                 break;
             default:
 
@@ -74,6 +73,7 @@ public class LoginScreen extends AppCompatActivity implements View.OnClickListen
                             FirebaseUser user = mAuth.getCurrentUser();
                             Toast.makeText(LoginScreen.this, "Successful login." +""+user.getUid(),
                                     Toast.LENGTH_SHORT).show();
+                            openActivityWithFinish(MainScreen.class);
                             //here we call location service
 
                         } else {
@@ -117,9 +117,5 @@ public class LoginScreen extends AppCompatActivity implements View.OnClickListen
         return valid;
     }
 
-    private void openSignUpActivity() {
-        Intent intent=new Intent(this,SignUpScreen.class);
-        startActivity(intent);
-        finish();
-    }
+
 }

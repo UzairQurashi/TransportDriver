@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "649230222243",
+    "firebase_url": "https://transportapp-4a518.firebaseio.com",
+    "project_id": "transportapp-4a518",
+    "storage_bucket": "transportapp-4a518.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:649230222243:android:139819d59e2cfa89",
+        "android_client_info": {
+          "package_name": "com.driver.travel.driverapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "649230222243-lr78q1ft6jmeghrll1v4410958465vmm.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB9CoWmUDxB0LKcLRiiNSL9rREvEihy_ZA"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

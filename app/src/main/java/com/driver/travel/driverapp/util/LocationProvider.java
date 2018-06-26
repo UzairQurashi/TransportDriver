@@ -13,11 +13,13 @@ import android.support.annotation.Nullable;
 import android.util.Log;
 import android.widget.Toast;
 
+import com.driver.travel.driverapp.firebase.LocationInfo;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationCallback;
 import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.location.LocationResult;
 import com.google.android.gms.location.LocationServices;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -106,18 +108,27 @@ public class LocationProvider extends IntentService{
                 Log.e("coordinates",""+lastLocation.getLatitude()+lastLocation.getLongitude());
 
                // setValue(lastLocation);
-                sendLocationUpdates(lastLocation);
+                LocationInfo location=new LocationInfo();
+                location.setLatitude(lastLocation.getLatitude());
+                location.setLongitude(lastLocation.getLongitude());
+                sendLocationUpdates(location);
             }
 
         }
     };
 
-    private void sendLocationUpdates(Location lastLocation) {
+    private void sendLocationUpdates(LocationInfo lastLocation) {
 
         FirebaseDatabase rootDb=FirebaseDatabase.getInstance();
         DatabaseReference dbRef=rootDb.getReference("Location");
-        dbRef.child("lat").setValue(lastLocation.getLatitude());
-        dbRef.child("lng").setValue(lastLocation.getLongitude());
+
+        //FirebaseAuth.getInstance().getCurrentUser().getUid()
+        if(FirebaseAuth.getInstance().getCurrentUser()!=null){
+           dbRef.child(FirebaseAuth.getInstance().getCurrentUser().getUid()).setValue(lastLocation);
+
+        }
+//        dbRef.child("lat").setValue(lastLocation.getLatitude());
+//        dbRef.child("lng").setValue(lastLocation.getLongitude());
     }
 
 
@@ -125,4 +136,5 @@ public class LocationProvider extends IntentService{
     protected void onHandleIntent(@Nullable Intent intent) {
 
     }
+
 }

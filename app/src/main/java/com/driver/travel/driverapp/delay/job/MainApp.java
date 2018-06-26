@@ -1,6 +1,7 @@
 package com.driver.travel.driverapp.delay.job;
 
 import android.app.Application;
+import android.support.multidex.MultiDexApplication;
 
 import com.evernote.android.job.JobConfig;
 import com.evernote.android.job.JobManager;
@@ -11,7 +12,7 @@ import static com.evernote.android.job.JobConfig.setAllowSmallerIntervalsForMars
  * Created by Uzair Qureshi on 6/21/2018.
  */
 
-public class MainApp extends Application {
+public class MainApp extends MultiDexApplication {
     @Override
     public void onCreate() {
         super.onCreate();

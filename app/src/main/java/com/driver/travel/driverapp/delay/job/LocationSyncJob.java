@@ -11,6 +11,7 @@ import android.util.Log;
 
 import com.driver.travel.driverapp.util.LocationProvider;
 import com.evernote.android.job.Job;
+import com.evernote.android.job.JobManager;
 import com.evernote.android.job.JobRequest;
 import com.google.android.gms.location.FusedLocationProviderClient;
 
@@ -26,7 +27,7 @@ public class LocationSyncJob extends Job {
     @Override
     protected Result onRunJob(@NonNull Params params) {
         // run location job here
-        //Log.e(TAG,"Locatoin trigger by scheduling");
+        Log.e(TAG,"Locatoin trigger by scheduling");
         startService(getContext());
 
         return Result.SUCCESS;
@@ -37,12 +38,32 @@ public class LocationSyncJob extends Job {
 
 
     }
-    public static void scheduleJob() {
+
+    @Override
+    protected void onCancel() {
+        super.onCancel();
+        stopservice(getContext());
+    }
+
+    private void stopservice(Context context) {
+        context.stopService(new Intent(context, LocationProvider.class));
+    }
+
+    /**
+     * this method will schedule this job
+     */
+    public static void schedulePeriodicJob() {
         new JobRequest.Builder(TAG)
                 .setPeriodic(TimeUnit.MINUTES.toMillis(2))
                 .setUpdateCurrent(true)//this request will cancel any preexisting job with the same tag while being scheduled.?true :false
-
                 .build()
                 .schedule();
+    }
+
+    /**
+     * this method will cancle this job
+     */
+    public static void cancleJob(){
+        JobManager.instance().cancelAllForTag(TAG);
     }
 }
