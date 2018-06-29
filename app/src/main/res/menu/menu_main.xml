@@ -2,6 +2,13 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="com.driver.travel.driverapp.MainActivity">
+
+    <item
+        android:id="@+id/switchId"
+        app:showAsAction="always"
+        app:actionLayout="@layout/switch_layout"
+        android:orderInCategory="100"
+        android:title="" />
     <item android:id="@+id/signout"
         android:icon="@drawable/ic__signout"
         android:title="Signout"

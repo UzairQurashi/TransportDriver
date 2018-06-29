@@ -7,10 +7,14 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
 import com.driver.travel.driverapp.databinding.ActivitySignUpScreenBinding;
+import com.driver.travel.driverapp.firebase.QueryHelper;
+import com.driver.travel.driverapp.models.Driver;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -100,6 +104,13 @@ public class SignUpScreen extends BaseActivity implements View.OnClickListener {
                             // Sign in success, update UI with the signed-in user's information
                             Log.d(TAG, "createUserWithEmail:success");
                             FirebaseUser user = mAuth.getCurrentUser();
+                            Driver driver=new Driver();
+                            driver.setEmail(user.getEmail());
+                            driver.setId(user.getUid());
+                            driver.setType("driver");
+                            QueryHelper.getInstance().addDriver(driver);
+
+
                             Toast.makeText(SignUpScreen.this, "Authentication Success.",
                                     Toast.LENGTH_SHORT).show();
                             // updateUI(user);
@@ -139,5 +150,14 @@ public class SignUpScreen extends BaseActivity implements View.OnClickListener {
         Intent intent=new Intent(this,LoginScreen.class);
         startActivity(intent);
         finish();
+    }
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        return true;
     }
 }

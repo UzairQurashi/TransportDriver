@@ -69,6 +69,7 @@
     <dimen name="above_normal_margin">15dp</dimen>
     <dimen name="card_height_large">450dp</dimen>
     <dimen name="card_height">120dp</dimen>
+    <dimen name="contact_card_height">80dp</dimen>
     <!--<diconsigneeNamename="mediun_card_height">120dp</dimen>-->
 
     <dimen name="small_card_height">75dp</dimen>

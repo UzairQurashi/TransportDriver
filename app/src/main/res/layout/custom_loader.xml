@@ -15,7 +15,7 @@
         android:visibility="visible"
         android:background="@android:color/transparent"
         app:indicatorName="BallClipRotatePulseIndicator"
-        app:indicatorColor="@color/colorPrimary"
+        app:indicatorColor="@color/light_grey"
         android:layout_centerVertical="true"
         android:layout_centerHorizontal="true"/>
 
@@ -30,7 +30,7 @@
         android:layout_marginTop="@dimen/large_margin"
         android:textSize="@dimen/abc_text_size_medium_material"
         android:layout_below="@id/progress_wheel"
-        android:textColor="@color/colorPrimary"
+        android:textColor="@color/light_grey"
         android:layout_centerHorizontal="true"/>
 
 </RelativeLayout>

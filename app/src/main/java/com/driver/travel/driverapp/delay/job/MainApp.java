@@ -1,6 +1,7 @@
 package com.driver.travel.driverapp.delay.job;
 
 import android.app.Application;
+import android.os.Build;
 import android.support.multidex.MultiDexApplication;
 
 import com.evernote.android.job.JobConfig;
@@ -17,8 +18,9 @@ public class MainApp extends MultiDexApplication {
     public void onCreate() {
         super.onCreate();
         JobManager.create(this).addJobCreator(new IJobCreator());
-
-        JobConfig.setAllowSmallerIntervalsForMarshmallow(true); // Don't use this in production
+   if(Build.VERSION.SDK_INT==23) {
+    JobConfig.setAllowSmallerIntervalsForMarshmallow(true);
+}// Don't use this in production
 
     }
 

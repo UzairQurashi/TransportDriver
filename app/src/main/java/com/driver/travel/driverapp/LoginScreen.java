@@ -7,10 +7,15 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
 import com.driver.travel.driverapp.databinding.ActivityLoginScreenBinding;
+import com.driver.travel.driverapp.firebase.AuthHelper;
+import com.driver.travel.driverapp.firebase.IFirebaseListner;
+import com.driver.travel.driverapp.models.Driver;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -25,6 +30,7 @@ public class LoginScreen extends BaseActivity implements View.OnClickListener {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = DataBindingUtil.setContentView(this, R.layout.activity_login_screen);
+        parentBinding=binding;
         loadViews();
     }
 
@@ -56,6 +62,7 @@ public class LoginScreen extends BaseActivity implements View.OnClickListener {
 
 
     private void driversignIn(String email, String password) {
+        showProgress();
         Log.d(TAG, "signIn:" + email);
         if (!validateForm()) {
             return;
@@ -71,14 +78,15 @@ public class LoginScreen extends BaseActivity implements View.OnClickListener {
                             // Sign in success, update UI with the signed-in user's information
                             Log.d(TAG, "signInWithEmail:success");
                             FirebaseUser user = mAuth.getCurrentUser();
-                            Toast.makeText(LoginScreen.this, "Successful login." +""+user.getUid(),
-                                    Toast.LENGTH_SHORT).show();
-                            openActivityWithFinish(MainScreen.class);
+
+                            authenticateUser(user.getUid());
+
                             //here we call location service
 
                         } else {
                             // If sign in fails, display a message to the user.
                             Log.w(TAG, "signInWithEmail:failure", task.getException());
+                            hideProgress();
                             Toast.makeText(LoginScreen.this, "Authentication failed.",
                                     Toast.LENGTH_SHORT).show();
 
@@ -87,12 +95,40 @@ public class LoginScreen extends BaseActivity implements View.OnClickListener {
                         // [START_EXCLUDE]
                         if (!task.isSuccessful()) {
                           //  mStatusTextView.setText(R.string.auth_failed);
+                           // Toast.makeText(LoginScreen.this,"Invalid",Toast.LENGTH_SHORT).show();
                         }
 
                         // [END_EXCLUDE]
                     }
                 });
         // [END sign_in_with_email]
+    }
+
+    private void authenticateUser(String uid){
+
+        AuthHelper.AuthLogin(uid, new IFirebaseListner<Driver>() {
+            @Override
+            public void onSuccess(Driver object) {
+                hideProgress();
+                Toast.makeText(LoginScreen.this, "Successful login." +""+object.getId(),
+                        Toast.LENGTH_SHORT).show();
+                openActivityWithFinish(MainScreen.class);
+            }
+
+            @Override
+            public void invalid(String message) {
+
+                hideProgress();
+                showMessage(getView(),message);
+            }
+
+            @Override
+            public void onFailure() {
+                hideProgress();
+
+            }
+        });
+
     }
 
     private boolean validateForm() {
@@ -117,5 +153,13 @@ public class LoginScreen extends BaseActivity implements View.OnClickListener {
         return valid;
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        return true;
+    }
 
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        return true;
+    }
 }

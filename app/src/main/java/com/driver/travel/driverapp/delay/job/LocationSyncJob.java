@@ -54,7 +54,7 @@ public class LocationSyncJob extends Job {
      */
     public static void schedulePeriodicJob() {
         new JobRequest.Builder(TAG)
-                .setPeriodic(TimeUnit.MINUTES.toMillis(2))
+                .setPeriodic(TimeUnit.MINUTES.toMillis(15))
                 .setUpdateCurrent(true)//this request will cancel any preexisting job with the same tag while being scheduled.?true :false
                 .build()
                 .schedule();

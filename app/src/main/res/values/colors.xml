@@ -3,4 +3,24 @@
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
+
+
+    <color name="white">#FFFFFF</color>
+    <color name="primary_blue">#092380</color>
+    <color name="input_field_blue">#636FAB</color>
+    <color name="registration_fiels_blue">#5468A5</color>
+    <color name="black">#000000</color>
+    <color name="grey">#C0C0C0</color>
+    <color name="light_grey">#D9D9D9</color>
+    <color name="primary_red">#D72427</color>
+    <color name="input_grey">#9D9D9D</color>
+
+    <color name="card_bg_color">#F4F4F4</color>
+    <color name="primary_green">#73993B</color>
+    <color name="secondary_green">#A4C639</color>
+    <color name="card_grey">#EFEDED
+
+
+
+    </color>
 </resources>
