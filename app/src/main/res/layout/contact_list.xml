@@ -17,6 +17,7 @@
             android:layout_marginLeft="@dimen/normal_margin"
             android:layout_marginRight="@dimen/normal_margin"
             android:layout_marginTop="@dimen/small_margin"
+            android:layout_marginBottom="@dimen/small_margin"
 
             android:animateLayoutChanges="true"
             app:cardBackgroundColor="@color/card_grey"

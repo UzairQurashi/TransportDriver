@@ -16,4 +16,6 @@
         completions."
     </string>
     <string name="sample_lbl">rnisa@gmail.com</string>
+    <string name="camera_and_location_rationale">Call PermissionRequired</string>
+    <string name="contacts_rationale">Call Permission Required</string>
 </resources>

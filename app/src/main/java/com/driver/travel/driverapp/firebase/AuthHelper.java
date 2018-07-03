@@ -13,7 +13,7 @@ import com.google.firebase.database.ValueEventListener;
  */
 
 public class AuthHelper {
-    public static void AuthLogin(String uid, final IFirebaseListner<Driver> listner){
+    public static void AuthLogin(String uid, final IFirebaseAuthListner<Driver> listner){
 
         FirebaseDatabase db=FirebaseDatabase.getInstance();
         db.getReference(Reference.USER).child(Reference.DRIVER).child(uid).addListenerForSingleValueEvent(new ValueEventListener() {

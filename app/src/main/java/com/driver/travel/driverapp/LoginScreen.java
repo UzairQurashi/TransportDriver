@@ -1,9 +1,7 @@
 package com.driver.travel.driverapp;
 
-import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.support.annotation.NonNull;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
@@ -14,7 +12,7 @@ import android.widget.Toast;
 
 import com.driver.travel.driverapp.databinding.ActivityLoginScreenBinding;
 import com.driver.travel.driverapp.firebase.AuthHelper;
-import com.driver.travel.driverapp.firebase.IFirebaseListner;
+import com.driver.travel.driverapp.firebase.IFirebaseAuthListner;
 import com.driver.travel.driverapp.models.Driver;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -106,7 +104,7 @@ public class LoginScreen extends BaseActivity implements View.OnClickListener {
 
     private void authenticateUser(String uid){
 
-        AuthHelper.AuthLogin(uid, new IFirebaseListner<Driver>() {
+        AuthHelper.AuthLogin(uid, new IFirebaseAuthListner<Driver>() {
             @Override
             public void onSuccess(Driver object) {
                 hideProgress();

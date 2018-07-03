@@ -8,6 +8,8 @@ package com.driver.travel.driverapp.firebase;
 public class Reference {
     public static final String USER="Users";
     public static final String DRIVER="Drivers";
+    public static final String CONSUMERS="Consumers";
+
 
 
 
